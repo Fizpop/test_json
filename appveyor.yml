@@ -3,19 +3,17 @@ version: 1.0.{build}
 image: Visual Studio 2022
 
 environment:
+  # Встановлюємо версію Python, яку будемо використовувати
   PYTHON_VERSION: "3.9.6"
 
 install:
-  - powershell -Command "Invoke-WebRequest -Uri https://www.python.org/ftp/python/%PYTHON_VERSION%/python-%PYTHON_VERSION%-embed-amd64.zip -OutFile python.zip"
-  - powershell -Command "Expand-Archive python.zip -DestinationPath C:\Python39"
-  - setx PATH "$($env:PATH);C:\Python39"
+  # Встановлюємо PyInstaller
   - pip install pyinstaller
-
-  
 
 build:
   # Запускаємо команду PyInstaller для створення .exe файлу
   script:
+    # Встановлюємо іконку та інші налаштування для .exe
     - pyinstaller --onefile --noconsole --icon=icon.ico test22.py
 
 artifacts:
