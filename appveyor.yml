@@ -3,17 +3,19 @@ version: 1.0.{build}
 image: Visual Studio 2022
 
 environment:
-  matrix:
-    - PYTHON: "C:\\Python39"
+  # Встановлюємо версію Python, яку будемо використовувати
+  PYTHON_VERSION: "3.9.6"
 
 install:
+  # Встановлюємо PyInstaller
   - pip install pyinstaller
 
 build:
-  project: "test22.py"
+  # Запускаємо команду PyInstaller для створення .exe файлу
   script:
     - pyinstaller --onefile --noconsole --icon=icon.ico test22.py
 
 artifacts:
+  # Вказуємо шлях до створеного .exe файлу
   - path: dist\test22.exe
     name: test22.exe
