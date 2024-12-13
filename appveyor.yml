@@ -1,0 +1,19 @@
+version: 1.0.{build}
+
+image: Visual Studio 2022
+
+environment:
+  matrix:
+    - PYTHON: "C:\\Python39"
+
+install:
+  - pip install pyinstaller
+
+build:
+  project: "test22.py"
+  script:
+    - pyinstaller --onefile --noconsole --icon=icon.ico test22.py
+
+artifacts:
+  - path: dist\test22.exe
+    name: test22.exe
